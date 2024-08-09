@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "CA Use Tax Calculator for Amazon Sellers",
+  "version": "1.0",
+  "description": "California Amazon Sellers can calculate the 3 main fields needed to submit their quarterly 'Sales and Use Tax' Returns",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": [
+    "https://amz-sales-use-tax-api-4b2d2c52ab75.herokuapp.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;"
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "popup.html",
+        "style.css",
+        "popup.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

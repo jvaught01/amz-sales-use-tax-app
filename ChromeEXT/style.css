@@ -1,0 +1,202 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 300px;
+  height: 600px;
+  margin: 0;
+  padding: 0;
+  font-family: ui-rounded, "Hiragino Maru Gothic ProN", Quicksand, Comfortaa,
+    Manjari, "Arial Rounded MT", "Arial Rounded MT Bold", Calibri,
+    source-sans-pro, sans-serif;
+  overflow: auto; /* Allows scrolling if content exceeds popup size */
+}
+
+.v3_2 {
+  width: 100%;
+  min-height: 600px; /* Ensure it covers the full height of the popup */
+  background: #427bfe;
+  position: relative; /* Changed to relative */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.v4_57,
+.v4_58 {
+  width: 280px; /* Reduced size to fit within the popup */
+  height: 280px; /* Maintained aspect ratio */
+  background: rgba(66, 19, 255, 1);
+  border-radius: 50%;
+  position: relative; /* Changed to relative */
+  margin-top: 20px;
+}
+
+.v4_57 {
+  background: rgba(66, 19, 255, 1);
+}
+
+.v4_58 {
+  background: rgba(255, 19, 132, 0.7);
+}
+
+.v3_3 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  animation: typing 1.3s steps(15, end), blink-caret 0.75s step-end infinite;
+  font-size: 30px; /* Adjusted font size for readability */
+  color: #ffffff;
+  text-align: center;
+  font-family: Baskerville, Baskerville Old Face, Garamond, Times New Roman,
+    serif;
+  font-weight: bold;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+}
+
+.v3_3 ::after {
+  content: "";
+  width: 5px;
+  height: 20px;
+  margin-left: 2px;
+  background: #ffffff;
+  display: inline-block;
+  animation: cursor-blink 1.5s steps(2) infinite;
+}
+
+.v3_4,
+.v4_9 {
+  width: 90%; /* Scaled width to fit within the popup */
+  margin: 10px auto; /* Centered horizontally */
+  font-size: 50px; /* Adjusted font size for readability */
+  color: #ffffff;
+  text-align: center;
+  font-family: "Poppins";
+  font-weight: bold;
+  content: "";
+}
+
+.v3_3 {
+  font-weight: bold;
+  font-size: 20px; /* Larger font for the main title */
+}
+
+.v3_4,
+.v4_9 {
+  font-weight: regular;
+  font-size: 16px; /* Slightly smaller font for subtitles */
+}
+
+.v4_13 {
+  width: 90%; /* Adjusted width */
+  height: 120px; /* Reduced height to fit */
+  background: #20df9e;
+  border-radius: 40px;
+  position: relative;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.v303_8 {
+  width: 90px; /* Adjusted for aspect ratio */
+  height: 90px;
+  background-size: cover;
+  position: relative;
+}
+
+.v303_2 {
+  width: 260px; /* Adjusted width to fit within popup */
+  height: 50px;
+  background: rgba(37, 0, 116, 1);
+  border-radius: 40px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+  position: relative;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.v303_6 {
+  font-size: 16px; /* Adjusted for element size */
+  text-align: center;
+  color: white;
+}
+
+input.upload-input {
+  visibility: visible;
+  opacity: 1;
+  position: relative;
+  z-index: 1000;
+  width: 90%; /* Make input smaller than container for aesthetic */
+  margin: auto; /* Center input within the div */
+  height: 40px; /* Define a specific height for better control */
+  padding-left: 50px;
+  padding-top: 20px;
+}
+
+button.btn {
+  width: 100%;
+  max-width: 260px; /* Adjusted width to fit within popup */
+  max-height: 50px;
+  height: 100%;
+  border-radius: 40px;
+  background-color: #20df9e;
+  box-shadow: 0 10px 10px rgba(72, 71, 71, 0.25);
+  position: relative;
+  margin: 0 auto 20px;
+  display: block;
+  justify-content: center;
+  color: white; /* Text color */
+  font-size: 16px; /* Text size */
+}
+
+button.reset-btn {
+  background-color: #ffffff;
+  box-shadow: 0;
+  border-radius: 40px;
+  margin: 0px;
+  width: 120px;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+}
+
+img {
+  width: 10%;
+  height: 10%;
+}
+
+p {
+  color: white;
+  font-family: "Poppins";
+  font-size: 15px;
+  margin: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+ul {
+  color: white;
+  font-family: "Poppins";
+  font-size: 12px;
+  margin: 10px;
+  font-weight: bold;
+}
