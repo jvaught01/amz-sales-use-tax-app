@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 
-
+Ca_1 = 0
+Ca_2 = 0
 tax_nums = {
     "tsiCA" : 0,
     'tsfp' : 0,
@@ -13,7 +14,7 @@ def process_data(file):
     pivot_table = np.around(filtered_df.pivot_table(index='Ship_To_State',values= 'TaxExclusive_Selling_Price', aggfunc='sum'), 2)    
     return(pivot_table)
     
-def do_calc(pivot_data, tax_nums):
+def do_calc(pivot_data, tax_nums,Ca_1=Ca_1, Ca_2=Ca_2):
     # START CALCULATIONS
     total_sum = pivot_data['TaxExclusive_Selling_Price'].sum()
     total_sum = np.round(total_sum, 2)
@@ -23,8 +24,8 @@ def do_calc(pivot_data, tax_nums):
             Ca_1 = sell_price
         if state == "Ca":
             Ca_2 = sell_price
-            add_ca = np.round(Ca_1 + Ca_2, 2)
-            tax_nums['tsiCA'] = add_ca
-    tax_nums['tsios'] = tax_nums['tsfp'] - tax_nums['tsiCA']
+    add_ca = np.round(Ca_1 + Ca_2, 2)
+    tax_nums['tsiCA'] = add_ca
+    tax_nums['tsios'] = np.round(tax_nums['tsfp'] - tax_nums['tsiCA'], 2)
     return tax_nums
     
