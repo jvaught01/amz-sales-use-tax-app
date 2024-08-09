@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify, abort
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from .utils.data_processor import process_data, do_calc, tax_nums
 from .utils.error import errors
 
@@ -6,7 +6,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return abort(404)
+    return render_template('index.html')
 
 
 
