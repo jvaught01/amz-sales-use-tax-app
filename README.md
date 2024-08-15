@@ -29,18 +29,12 @@ To get started with the California Amazon Sellers Sales and Use Tax Calculator, 
 
 1.  Clone the repository:
     
-    bash
-    
-    Copy code
-    
+
     `git clone https://github.com/jvaught01/amz-sales-use-tax-app.git
     cd amz-sales-use-tax-app` 
     
 2.  Create a virtual environment:
-    
-    bash
-    
-    Copy code
+
     
     `python3 -m venv venv
     source venv/bin/activate` 
@@ -53,22 +47,12 @@ To get started with the California Amazon Sellers Sales and Use Tax Calculator, 
     
     `pip install -r requirements.txt` 
     
-4.  Set up the application:
-    
-    bash
-    
-    Copy code
-    
-    `# Add any additional setup steps here` 
     
 
 ## Usage
 
 1.  Start the application:
     
-    bash
-    
-    Copy code
     
     `python app.py` 
     
@@ -79,37 +63,6 @@ To get started with the California Amazon Sellers Sales and Use Tax Calculator, 
 4.  View the calculated sales and use tax for the given quarter.
     
 
-## Contributing
-
-We welcome contributions to improve the California Amazon Sellers Sales and Use Tax Calculator! To contribute:
-
-1.  Fork the repository.
-2.  Create a new branch:
-    
-    bash
-    
-    Copy code
-    
-    `git checkout -b feature-name` 
-    
-3.  Make your changes.
-4.  Commit your changes:
-    
-    bash
-    
-    Copy code
-    
-    `git commit -m "Description of changes"` 
-    
-5.  Push to the branch:
-    
-    bash
-    
-    Copy code
-    
-    `git push origin feature-name` 
-    
-6.  Create a pull request.
 
 ## License
 
