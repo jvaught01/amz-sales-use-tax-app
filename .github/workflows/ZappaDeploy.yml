@@ -32,11 +32,11 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }} # Only if using temporary credentials
-          # AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         run: |
           echo "Configuring boto3 session..."
           source venv/bin/activate
-          python -c "import boto3; boto3.setup_default_session(aws_access_key_id='$AWS_ACCESS_KEY_ID', aws_secret_access_key='$AWS_SECRET_ACCESS_KEY', aws_session_token='$AWS_SESSION_TOKEN', region_name='us-east-1')"
+          python -c "import boto3; boto3.setup_default_session(aws_access_key_id='$AWS_ACCESS_KEY_ID', aws_secret_access_key='$AWS_SECRET_ACCESS_KEY', aws_session_token='$AWS_SESSION_TOKEN', region_name='$AWS_DEFAULT_REGION')"
           echo "Boto3 session configured."
 
       - name: Set Zappa Environment based on branch
@@ -51,22 +51,19 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }} # Only if using temporary credentials
-          # AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         run: |
           set -e
           source venv/bin/activate
-          zappa update $BRANCH_NAME || zappa deploy $BRANCH_NAME
-
-      - name: Extract and Display API URL
-        id: extract-api-url
-        continue-on-error: true
-        run: |
-          source venv/bin/activate
-          DEPLOY_OUTPUT=$(zappa status $BRANCH_NAME || true)
-          API_URL=$(echo "$DEPLOY_OUTPUT" | grep -oP 'https://\S+amazonaws.com/\S+')
+          DEPLOY_OUTPUT=$(zappa update $BRANCH_NAME || zappa deploy $BRANCH_NAME)
+          LAST_LINE=$(echo "$DEPLOY_OUTPUT" | tail -n 1)
+          API_URL=$(echo "$LAST_LINE" | grep -oP 'https://\S+amazonaws.com/\S+')
           API_URL_WITH_PATH="${API_URL}/upload"
-          echo "API URL with /upload: $API_URL_WITH_PATH"
           echo "API_URL_WITH_PATH=$API_URL_WITH_PATH" >> $GITHUB_ENV
+
+      - name: Debug API URL
+        run: |
+          echo "API URL with /upload from GITHUB_ENV: ${{ env.API_URL_WITH_PATH }}"
 
       - name: Notify on Success
         if: success()
