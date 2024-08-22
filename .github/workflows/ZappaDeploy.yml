@@ -67,6 +67,7 @@ jobs:
             zappa update $BRANCH_NAME
           else
             zappa deploy $BRANCH_NAME
+          fi
 
       - name: Extract and Display API URL
         run: |
