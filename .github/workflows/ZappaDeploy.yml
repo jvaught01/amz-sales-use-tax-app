@@ -34,6 +34,7 @@ jobs:
         AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}  # Only if using temporary credentials
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       run: |
+        source venv/bin/activate  # Ensure virtual environment is activated
         echo "Configuring boto3 session..."
         echo "import boto3" > setup_boto3_session.py
         echo "session = boto3.Session(aws_access_key_id='$AWS_ACCESS_KEY_ID', aws_secret_access_key='$AWS_SECRET_ACCESS_KEY', aws_session_token='$AWS_SESSION_TOKEN', region_name='$AWS_DEFAULT_REGION')" >> setup_boto3_session.py
