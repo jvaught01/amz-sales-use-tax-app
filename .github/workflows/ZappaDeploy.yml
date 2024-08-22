@@ -55,6 +55,7 @@ jobs:
           fi
 
       - name: Deploy or Update with Zappa
+        id: deploy-zappa
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -66,11 +67,20 @@ jobs:
             zappa update $BRANCH_NAME
           else
             zappa deploy $BRANCH_NAME
-          fi
+
+      - name: Extract and Display API URL
+        run: |
+          source venv/bin/activate
+          DEPLOY_OUTPUT=$(zappa status $BRANCH_NAME)
+          API_URL=$(echo "$DEPLOY_OUTPUT" | grep -oP 'https://\S+amazonaws.com/\S+')
+          echo "API URL: $API_URL"
+          echo "API_URL=$API_URL" >> $GITHUB_ENV
 
       - name: Notify on Success
         if: success()
-        run: echo "Deployment was successful for branch $BRANCH_NAME!"
+        run: |
+          echo "Deployment was successful for branch $BRANCH_NAME!"
+          echo "Your API is available at: ${{ env.API_URL }}"
 
       - name: Notify on Failure
         if: failure()
