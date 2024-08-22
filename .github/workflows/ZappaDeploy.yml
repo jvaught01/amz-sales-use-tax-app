@@ -64,9 +64,10 @@ jobs:
 
       - name: Send API URL to Slack
         run: |
+          SLACK_WEBHOOK_URL="https://hooks.slack.com/services/${{ secrets.SLACK_TEAM_ID }}/${{ secrets.SLACK_CHANNEL_ID }}/${{ secrets.SLACK_TOKEN }}"
           curl -X POST -H 'Content-type: application/json' \
           --data "{\"text\":\"Your API is available at: <${{ env.API_URL_WITH_PATH }}|Click here to access the API>\"}" \
-          https://hooks.slack.com/services/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
+          $SLACK_WEBHOOK_URL
 
       - name: Notify on Success
         if: success()
