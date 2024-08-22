@@ -1,11 +1,17 @@
 {
-  "main": {
-    "app_function": "run.app",
-    "exclude": ["boto3", "dateutil", "botocore", "s3transfer", "concurrent"],
-    "profile_name": null,
-    "project_name": "sales-use-tax-p",
-    "runtime": "python3.10",
-    "s3_bucket": "zappa-v1kpvbat6",
-    "aws_region": "us-east-1"
-  }
+	"main": {
+		"app_function": "run.app",
+		"exclude": [
+			"boto3",
+			"dateutil",
+			"botocore",
+			"s3transfer",
+			"concurrent"
+		],
+		"profile_name": null,
+		"project_name": "sales-use-tax-p",
+		"runtime": "python3.10",
+		"s3_bucket": "zappa-v1kpvbat6",
+		"aws_region": "us-east-1"
+	}
 }
