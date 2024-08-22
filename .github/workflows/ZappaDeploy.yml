@@ -35,6 +35,10 @@ jobs:
 
     - name: Check if already deployed
       id: check-deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       run: |
         source venv/bin/activate
         if zappa status $BRANCH_NAME; then
@@ -44,6 +48,10 @@ jobs:
         fi
 
     - name: Deploy or Update with Zappa
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       run: |
         source venv/bin/activate
         if [ "$already_deployed" = "true" ]; then
