@@ -27,6 +27,20 @@ jobs:
         source venv/bin/activate
         pip install -r requirements.txt
 
+    - name: Configure Boto3 Session
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}  # Only if using temporary credentials
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      run: |
+        source venv/bin/activate  # Ensure virtual environment is activated
+        echo "Configuring boto3 session..."
+        echo "import boto3" > setup_boto3_session.py
+        echo "session = boto3.Session(aws_access_key_id='$AWS_ACCESS_KEY_ID', aws_secret_access_key='$AWS_SECRET_ACCESS_KEY', aws_session_token='$AWS_SESSION_TOKEN', region_name='$AWS_DEFAULT_REGION')" >> setup_boto3_session.py
+        echo "print('Boto3 session configured successfully.')" >> setup_boto3_session.py
+        python setup_boto3_session.py
+
     - name: Set Zappa Environment based on branch
       id: set-env
       run: |
@@ -34,7 +48,6 @@ jobs:
         echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
 
     - name: Check if already deployed
-      id: check-deploy
       run: |
         source venv/bin/activate
         if zappa status $BRANCH_NAME; then
