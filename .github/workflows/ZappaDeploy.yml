@@ -58,6 +58,7 @@ jobs:
           zappa update $BRANCH_NAME || zappa deploy $BRANCH_NAME
 
       - name: Extract and Display API URL
+        id: extract-api-url
         continue-on-error: true
         run: |
           source venv/bin/activate
@@ -72,7 +73,3 @@ jobs:
         run: |
           echo "Deployment was successful for branch $BRANCH_NAME!"
           echo "Your API is available at: ${{ env.API_URL_WITH_PATH }}"
-
-      - name: Notify on Failure
-        if: failure()
-        run: echo "Deployment failed for branch $BRANCH_NAME!"
