@@ -45,15 +45,6 @@ jobs:
           BRANCH_NAME=$(echo "${GITHUB_REF##*/}")
           echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
 
-      - name: Check if already deployed
-        run: |
-          source venv/bin/activate
-          if zappa status $BRANCH_NAME; then
-            echo "already_deployed=true" >> $GITHUB_ENV
-          else
-            echo "already_deployed=false" >> $GITHUB_ENV
-          fi
-
       - name: Deploy or Update with Zappa
         id: deploy-zappa
         env:
@@ -63,10 +54,10 @@ jobs:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         run: |
           source venv/bin/activate
-          if [ "$already_deployed" = "true" ]; then
+          if zappa status $BRANCH_NAME; then
             zappa update $BRANCH_NAME
           else
-            zappa deploy $BRANCH_NAME
+            zappa deploy $BRANCH_NAME || echo "First deployment detected."
           fi
 
       - name: Extract and Display API URL
