@@ -20,7 +20,7 @@ Before you begin, make sure you have the following:
 - Generate an Access Key ID and Secret Access Key for your IAM user.
 
 ### 2. Slack Webhook Setup(NOTE: THIS IS OPTIONAL)
-To receive deployment notifications via Slack, you'll need to set up an Incoming Webhook in Slack and store the necessary parts of the webhook URL as secrets in your GitHub repository.
+To receive your API URL as a notifications via Slack, you'll need to set up an Incoming Webhook in Slack and store the necessary parts of the webhook URL as secrets in your GitHub repository.
 
 #### Step 1: Create a Slack Incoming Webhook
 
@@ -63,27 +63,8 @@ git clone https://github.com/jvaught01/amz-sales-use-tax-app.git
 cd amz-sales-use-tax-app
 ```
 
-### Step 2. Create and Activate a Virtual Environment
 
-To avoid conflicts between dependencies of different Python projects, it's recommended to create a virtual environment:
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-### 3. Install Required Dependencies
-
-With the virtual environment activated, install the required dependencies for the project:
-
-bash
-
-Copy code
-
-`pip install -r requirements.txt` 
-
-This command installs all the Python packages listed in the `requirements.txt` file into your virtual environment.
-
-### 4. Configure the `zappa_settings.json` File
+### Step 2. Configure the `zappa_settings.json` File
 
 Before deploying the application, you'll need to configure the `zappa_settings.json` file with your specific AWS settings.
 
@@ -111,7 +92,7 @@ Here’s an example configuration:
 -   **project_name**: A unique name for your Zappa project.
 -   **runtime**: The Python runtime to use (e.g., `python3.10`).
 
-Make sure to replace `"your-s3-bucket-name"` with your actual S3 bucket name.
+Make sure to replace `"your-s3-bucket-name"` with your actual S3 bucket name(example: "s3_bucket": "zappa-v1kpvbat6",).
 
 Once these steps are complete, your environment will be ready for deploying the application.
 
