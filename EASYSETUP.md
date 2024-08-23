@@ -105,7 +105,17 @@ openssl rand -base64 9
 
 ### Step 9: Test It Out!
 
--   Upload a CSV file using the Chrome extension and verify that it correctly processes the sales and use tax calculations.
+- Use the Chrome extension to upload a CSV file and verify that the API processes the sales and use tax calculations correctly.
+
+To make testing easy, there’s a sample file included in the repository called `SampleData.csv`. You can use this file to test your setup.
+
+When you upload `SampleData.csv` through the Chrome extension, the API should return the following results:
+
+- **Total Sales in California:** 847.46
+- **Total Sales for the Period:** 8,409.62
+- **Total Sales in Other States:** 7,562.16
+
+If you see these numbers, your setup is working correctly!
 
 ## Conclusion
 
