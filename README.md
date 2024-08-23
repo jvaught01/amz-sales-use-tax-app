@@ -114,4 +114,3 @@ If you see these numbers, your setup is working correctly!
 ## Conclusion
 
 By following these simple steps, you can quickly set up and deploy the backend for your Chrome extension using AWS Lambda and Zappa. This streamlined process ensures you spend less time on setup and more time on building and testing your application.
-```
