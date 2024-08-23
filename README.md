@@ -3,7 +3,7 @@
 This project involves deploying a backend Flask API as a serverless function on AWS Lambda using Zappa and automating the process with GitHub Actions. The backend is designed to support a sample Chrome extension that calculates sales and use tax fields for an Amazon businesses.
 
 ## Architecure
-<img width="1330" alt="Screen Shot 2024-08-23 at 12 42 43 AM" src="https://github.com/user-attachments/assets/3caada86-1123-487d-8a5a-46c0cb216542">
+![Flask to AWS Serverless Architecure](https://github.com/user-attachments/assets/469ab44f-767b-4d72-8013-a280ecc1df17)
 
 
 
