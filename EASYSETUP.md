@@ -57,7 +57,7 @@ https://hooks.slack.com/services/TXXXXXXXX/BXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX
   **PRO TIP**: You can generate a random string of characters for the bucket name by running:
 
 ```bash
-openssl rand -base64 9
+openssl rand -hex 4
 ```
 
 Example bucket name: `"s3_bucket": "zappa-v1kpvbat6",`
