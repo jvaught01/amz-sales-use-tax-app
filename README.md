@@ -1,6 +1,12 @@
-# Sales and Use Tax Chrome Extension - Serverless Backend
+# Deploy a serverless backend flask API 
 
-This project involves deploying a backend Flask API as a serverless function on AWS Lambda using Zappa and automating the process with GitHub Actions. The backend is designed to support a Chrome extension that calculates sales and use tax fields for an Amazon business.
+This project involves deploying a backend Flask API as a serverless function on AWS Lambda using Zappa and automating the process with GitHub Actions. The backend is designed to support a sample Chrome extension that calculates sales and use tax fields for an Amazon businesses.
+
+## Architecure
+![Flask to AWS Serverless Architecure](https://github.com/user-attachments/assets/469ab44f-767b-4d72-8013-a280ecc1df17)
+
+
+
 
 ## Quick and Easy Setup
 
