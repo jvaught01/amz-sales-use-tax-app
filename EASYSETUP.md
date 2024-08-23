@@ -2,6 +2,8 @@
 
 This project involves deploying a backend Flask API as a serverless function on AWS Lambda using Zappa and automating the process with GitHub Actions. The backend is designed to support a Chrome extension that calculates sales and use tax fields for an Amazon business.
 
+## Quick and Easy Setup
+
 ## Slack Webhook Setup(NOTE: THIS IS OPTIONAL)
 
 To receive your API URL as a notifications via Slack, you'll need to set up an Incoming Webhook in Slack and store the necessary parts of the webhook URL as secrets in your GitHub repository.
@@ -9,36 +11,23 @@ To receive your API URL as a notifications via Slack, you'll need to set up an I
 #### Step 1: Create a Slack Incoming Webhook
 
 1.  Go to your Slack workspace and navigate to **Apps**.
-2.  Search for and select the **Incoming Webhooks** app.
-3.  Click **Add to Slack** and choose the channel where you want to receive notifications.
-4.  After adding, Slack will provide you with a **Webhook URL**. This URL will look something like this:
+2.  Create new **App** from scratch
+3.  Select the workspace for the app and select **Create App**
+4.  Under **OAuth & permissions** add a scope called **incoming-webhook**
+5.  Under **OAuth Tokens** click on **Install to "your_workspace"**
+6.  Next, choose the channel where you want to receive notifications.
+7.  Now in the **Features** menu, click **Incoming Webhooks**
+8.  Scroll until you see **Webhook URL**. This URL will look something like this:
 
 https://hooks.slack.com/services/TXXXXXXXX/BXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX
 
-#### Step 2: Store Webhook Parts as GitHub Secrets
-
-You'll need to break down the Slack Webhook URL into three parts and store each part as a secret in your GitHub repository(This can be annoying but its nice to stay secure!):
-
-1.  **SLACK_TEAM_ID**: This corresponds to the `TXXXXXXXX` part of the URL.
-2.  **SLACK_CHANNEL_ID**: This corresponds to the `BXXXXXXXX` part of the URL.
-3.  **SLACK_TOKEN**: This corresponds to the `XXXXXXXXXXXXXXXXXXXXXXXX` part of the URL.
-
-To store these parts as secrets:
-
-1.  Go to your GitHub repository and navigate to **Settings** > **Secrets and variables** > **Actions**.
-2.  Click on **New repository secret** for each of the three parts:
-
-- Add a new secret named `SLACK_TEAM_ID` with the value `TXXXXXXXX`.
-- Add a new secret named `SLACK_CHANNEL_ID` with the value `BXXXXXXXX`.
-- Add a new secret named `SLACK_TOKEN` with the value `XXXXXXXXXXXXXXXXXXXXXXXX`.
-
-## Quick and Easy Setup
-
+## Okay Now Lets begin!
 ### Step 1: Fork the Repository
 
 - Fork the repository to your GitHub account.
 
 ### Step 2: Set Up Repository Secrets
+
 
 - Go to your forked repository on GitHub.
 - Navigate to **Settings** > **Secrets and variables** > **Actions**.
@@ -71,19 +60,18 @@ To store these parts as secrets:
 openssl rand -base64 9
 ```
 
-    Example bucket name: `"s3_bucket": "zappa-v1kpvbat6",`
+Example bucket name: `"s3_bucket": "zappa-v1kpvbat6",`
 
 ### Step 5: Commit Your Changes
 
 - Commit and push your changes to your GitHub repository:
 
   ```bash
-  `git add .
+  git add .
   git commit -m "Configured zappa_settings.json"
   git push origin YOUR_BRANCH_NAME
   ```
 
-```
 
 
 ### Step 6: Grab the API URL
