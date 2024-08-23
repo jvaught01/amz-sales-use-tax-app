@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     const formData = new FormData(form);
-    fetch("http://127.0.0.1:5000/upload", {
+    fetch("YOUR_API_URL", {
       method: "POST",
       body: formData,
     })
