@@ -64,14 +64,17 @@ jobs:
           else
             # New deployment
             echo "already_deployed=false" >> $GITHUB_ENV
-            zappa deploy $BRANCH_NAME
+            DEPLOY_OUTPUT=$(zappa deploy $BRANCH_NAME)
+            LAST_LINE=$(echo "$DEPLOY_OUTPUT" | tail -n 1)
+            API_URL=$(echo "$LAST_LINE" | grep -oP 'https://\S+amazonaws.com/\S+')
+            API_URL_WITH_PATH="${API_URL}/upload"
+            echo "API_URL_WITH_PATH=$API_URL_WITH_PATH" >> $GITHUB_ENV
           fi
 
       - name: Send Slack Notification on New Deployment
         if: env.already_deployed == 'false'
         run: |
           SLACK_WEBHOOK_URL="https://hooks.slack.com/services/${{ secrets.SLACK_TEAM_ID }}/${{ secrets.SLACK_CHANNEL_ID }}/${{ secrets.SLACK_TOKEN }}"
-          API_URL_WITH_PATH="${{ env.API_URL_WITH_PATH }}"
           curl -X POST -H 'Content-type: application/json' \
-          --data "{\"text\":\"A new API has been deployed and is available at: $API_URL_WITH_PATH\"}" \
+          --data "{\"text\":\"A new API has been deployed and is available at: ${{ env.API_URL_WITH_PATH }}\"}" \
           $SLACK_WEBHOOK_URL
