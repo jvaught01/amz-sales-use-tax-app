@@ -13,5 +13,6 @@
 		"runtime": "python3.10",
 		"s3_bucket": "zappa-v1kpvbat6",
 		"aws_region": "us-east-1"
-	}
+	},
+	"Transform": "AWS::Serverless-2016-10-31"
 }
