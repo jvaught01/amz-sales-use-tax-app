@@ -33,5 +33,5 @@ tqdm==4.66.5
 troposphere==4.8.1
 tzdata==2024.1
 urllib3==2.2.2
-Werkzeug==3.0.2
+Werkzeug==3.0.3
 zappa==0.59.0
