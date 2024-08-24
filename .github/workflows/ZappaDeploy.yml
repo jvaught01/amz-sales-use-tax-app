@@ -6,6 +6,7 @@ on:
       - "zappa_settings.json"
       - "ChromeEXT/**"
       - "requirements.txt"
+      - "app/**"
 
 jobs:
   deploy:
