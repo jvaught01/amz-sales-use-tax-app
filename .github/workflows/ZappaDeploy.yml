@@ -2,11 +2,10 @@ name: Zappa Deploy
 
 on:
   push:
-    branches:
-      - main
-      - dev
-      - staging
-      - prod
+    paths:
+      - "zappa_settings.json"
+      - "ChromeEXT/**"
+      - "requirements.txt"
 
 jobs:
   deploy:
